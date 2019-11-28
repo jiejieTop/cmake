@@ -13,8 +13,13 @@ set(SUBDIRS power)
 # 指定编译器
 set(CMAKE_C_COMPILER "gcc")
 
+#判断编译器类型,如果是gcc编译器,则在编译选项中加入c++11支持
+if(CMAKE_COMPILER_IS_GNUCXX)
+    set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+endif(CMAKE_COMPILER_IS_GNUCXX)
+
 #指定编译类型
-SET(CMAKE_BUILE_TYPE DEBUG)
+SET(CMAKE_BUILE_TYPE "RELEASE")
 
 # 查找当前目录下的所有源文件
 # 并将名称保存到 DIR_SRCS 变量

@@ -2,12 +2,12 @@
  * @Author: jiejie
  * @Github: https://github.com/jiejieTop
  * @Date: 2019-11-26 23:54:34
- * @LastEditTime: 2019-11-28 06:18:43
+ * @LastEditTime: 2019-11-28 07:55:49
  * @Description: the code belongs to jiejie, please keep the author information and source code according to the license.
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include "power.h"
+#include "power/power.h"
 
 int main(int argc, char *argv[])
 {

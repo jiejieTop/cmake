@@ -10,6 +10,9 @@ set(TARGETS targets)
 # 子目录
 set(SUBDIRS power)
 
+# 子目录
+set(INCDIRS inc/power)
+
 # 指定编译器
 set(CMAKE_C_COMPILER "gcc")
 
@@ -30,6 +33,12 @@ aux_source_directory(. DIR_SRCS)
 
 # 指定生成目标
 add_executable(${TARGETS} ${DIR_SRCS})
+
+# 添加子目录
+foreach(incdir ${INCDIRS})
+    include_directories(${incdir})
+endforeach()
+
 
 # 添加子目录
 foreach(subdir ${SUBDIRS})

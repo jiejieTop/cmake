@@ -4,18 +4,17 @@ cmake_minimum_required(VERSION 2.8)
 # 项目信息
 project(targets)
 
-# 设置可执行文件文件名
+# 设置项目名
 set(TARGETS targets)
 
-# 设置可执行文件的输出目录
-SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/bin)     
-
 # 子目录
-set(SUBDIRS lib)
+set(SUBDIRS "src" "main")
 
-# 指定库目录
-# set(CMAKE_PREFIX_PATH lib/)
-set(LIBDIRS power)
+# 头文件目录
+set(INCDIRS "inc/power/")
+
+# 库名字
+set(LIBNAMES "power")
 
 # 指定编译器
 set(CMAKE_C_COMPILER "gcc")
@@ -35,51 +34,27 @@ endif(CMAKE_COMPILER_IS_GNUCXX)
 #指定编译类型
 SET(CMAKE_BUILE_TYPE "RELEASE")
 
-# 查找当前目录下的所有源文件
-# 并将名称保存到 DIR_SRCS 变量
-aux_source_directory(. DIR_SRCS)
+#工程的根目录
+set(PROJECT_ROOT_PATH "${PROJECT_SOURCE_DIR}")
+# 静态库生成后存放的目录
+set(LIBRARY_OUTPUT_PATH "${PROJECT_ROOT_PATH}/cmake/lib/")
+# 可执行生成后存放的目录
+set(EXECUTABLE_OUTPUT_PATH "${PROJECT_ROOT_PATH}/cmake/bin/")
 
-# 打印变量
-# message(${DIR_SRCS})
-
-# 编译为可执行文件
-add_executable(${TARGETS} ${DIR_SRCS})
+# 头文件目录
+foreach(incdir ${INCDIRS})
+    # 添加头文件目录
+    include_directories(${incdir})
+endforeach()
 
 # 子目录
 foreach(subdir ${SUBDIRS})
-    # 找到子目录下的头文件
-    include_directories(${subdir})
     # 添加子目录
-    add_subdirectory(${subdir})
+    add_subdirectory(${PROJECT_ROOT_PATH}/${subdir})
 endforeach()
 
-# 库文件
-foreach(libdir ${LIBDIRS})
-    # 找到库文件目录
-    link_directories(${libdir})
+#告诉CMake静态库在哪里
+link_directories(${LIBRARY_OUTPUT_PATH})
 
-    # 找到库的头文件
-    include_directories(${libdir})
 
-    # 添加链接库
-endforeach()
 
-target_link_libraries(${TARGETS} ${LIBDIRS})
-
-# -------------------------------------------------------------------------------------------------------------------
-
-#add_executable(project1 ${src})                        #编译为可执行程序
-#add_library(project1 ${src})                           #编译为静态库
-#add_library(project1 SHARED ${src})                    #编译为动态链接库
-
-#add_executable(project1 MACOSX_BUNDLE ${src})          #编译为可执行程序 *.app
-
-#add_library(project1 MODULE ${src})                    #编译为程序资源包 *.bundle
-#set_target_properties(project1 PROPERTIES BUNDLE TRUE)
-
-#add_library(project1 SHARED ${src})                     #编译为程序资源包 *.framework
-#set_target_properties(project1 PROPERTIES FRAMEWORK TRUE)
-
-#SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../bin)       #设置可执行文件的输出目录
-
-#SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../lib)           #设置库文件的输出目录

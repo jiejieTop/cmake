@@ -6,16 +6,18 @@ aux_source_directory(. DIR_SRCS)
 add_executable(${TARGETS} ${DIR_SRCS})
 
 # 告诉CMake静态库在哪里
-foreach(libname ${LIBNAMES})
+foreach(findlib ${LIBNAMES})
 
     # 搜索库
     find_library(
         libraries
-        NAMES ${libname}
+        NAMES ${findlib}
         PATHS ${LIBRARY_OUTPUT_PATH}
+        NO_DEFAULT_PATH     #通过多次调用find_library命令以及NO_*选项，可以覆盖工程的这个默认顺序
     )
 
+    message(STATUS "find library is ${libraries}")
     # 添加链接库
-    target_link_libraries(${TARGETS} ${libraries})
+    target_link_libraries(${TARGETS} ${findlib})
 endforeach()
 

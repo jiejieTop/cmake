@@ -28,7 +28,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "-g")                     # 调试信息
     set(CMAKE_CXX_FLAGS "-Wall")                  # 开启所有警告
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g -ggdb")              # 调试包不优化
-    set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG ")  # release包优化
+    set(CMAKE_CXX_FLAGS_RELEASE "-O1 -DNDEBUG ")  # release包优化
 endif(CMAKE_COMPILER_IS_GNUCXX)
 
 #指定编译类型
@@ -55,6 +55,3 @@ endforeach()
 
 #告诉CMake静态库在哪里
 link_directories(${LIBRARY_OUTPUT_PATH})
-
-
-

@@ -8,7 +8,7 @@ add_executable(${TARGETS} ${DIR_SRCS})
 # 告诉CMake静态库在哪里
 foreach(findlib ${LIBNAMES})
 
-    # 搜索库
+    # 搜索库,其实不需要搜索，直接在add后link即可
     find_library(
         libraries
         NAMES ${findlib}

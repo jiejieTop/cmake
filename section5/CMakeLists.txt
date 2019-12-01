@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8)
 project(targets)
 
 # 设置项目名
-set(TARGETS targets)
+set(TARGETS "targets")
 
 # 子目录
 set(SUBDIRS "src" "main")

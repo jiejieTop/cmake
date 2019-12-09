@@ -5,13 +5,13 @@ cmake_minimum_required(VERSION 2.8)
 project(targets)
 
 # 设置可执行文件目标
-set(TARGETS targets)
+set(TARGETS "targets")
 
 # 子目录
-set(SUBDIRS power)
+set(SUBDIRS "power")
 
-# 子目录
-set(INCDIRS inc/power)
+# 头文件
+set(INCDIRS "inc/power")
 
 # 指定编译器
 set(CMAKE_C_COMPILER "gcc")
@@ -28,13 +28,10 @@ SET(CMAKE_BUILE_TYPE "RELEASE")
 # 并将名称保存到 DIR_SRCS 变量
 aux_source_directory(. DIR_SRCS)
 
-# 打印变量
-# message(${DIR_SRCS})
-
 # 指定生成目标
 add_executable(${TARGETS} ${DIR_SRCS})
 
-# 添加子目录
+# 添加头文件目录
 foreach(incdir ${INCDIRS})
     include_directories(${incdir})
 endforeach()

@@ -11,7 +11,7 @@ set(TARGETS "targets")
 set(SUBDIRS "power")
 
 # 头文件
-set(INCDIRS "inc/power")
+set(INCDIRS "inc")
 
 # 指定编译器
 set(CMAKE_C_COMPILER "gcc")
